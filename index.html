@@ -40,7 +40,7 @@
       width: 20px;
       height: 20px;
       flex-shrink: 0;
-      transform: rotate(45deg); /* Update 1 */
+      transform: rotate(45deg);
     }
   </style>
 </head>
@@ -57,27 +57,31 @@
 
     const QUESTIONS = [
       { character: 'Ana', text: 'A empresa está sendo pressionada pelos clientes a mostrar algo novo além do que já faz há anos. Como você reage a essa situação?' },
-      { character: 'Cris', text: 'Um novo diretor quer sair da visão tradicional para que a empresa possa evoluir. Como você enxerga isso?' },
-      { character: 'Cris', text: 'Há resistência da diretoria em mudar. Como você reagiria para avançar mesmo assim?' },
-      { character: 'Rui', text: 'Alguns desejam fortemente a mudança. Como você lidaria com isso?' }
+      { character: 'Rui', text: 'Um novo diretor quer sair da visão tradicional para que a empresa possa evoluir. Como você enxerga isso?' },
+      { character: 'Ana', text: 'Há resistência da diretoria em mudar. Como você reagiria para avançar mesmo assim?' },
+      { character: 'Cris', text: 'Alguns desejam fortemente a mudança. Como você lidaria com isso?' }
     ];
 
     const ANSWERS = [
-      { character: 'Ana', text: 'Considero essa mudança com realismo, analisando o que é viável e como podemos equilibrar inovação e recursos.', competency: 2 },
+	//respostas 1
+ 	  { character: 'Rui', text: 'Considero essa mudança com realismo, analisando o que é viável e como podemos equilibrar inovação e recursos.', competency: 2 },
       { character: 'Cris', text: 'Exploro novas abordagens e adapto nosso trabalho para atender às novas expectativas dos clientes.', competency: 1 },
 	  
-      { character: 'Rui', text: 'Vejo essa mudança como uma oportunidade para expandir nossa atuação e buscar novas possibilidades de crescimento.', competency: 2 },
+	//respostas 2
+      { character: 'Ana', text: 'Vejo essa mudança como uma oportunidade para expandir nossa atuação e buscar novas possibilidades de crescimento.', competency: 2 },
       { character: 'Cris', text: 'Considero essa mudança com realismo, analisando o que é viável e como podemos equilibrar inovação e recursos.', competency: 1 },
 	  
-      { character: 'Ana', text: 'Eu foco em pequenas ações que mostrem os benefícios da mudança, tentando demonstrar o valor da nova abordagem.', competency: 1 },
+	//respostas 3
+       { character: 'Cris', text: 'Eu foco em pequenas ações que mostrem os benefícios da mudança, tentando demonstrar o valor da nova abordagem.', competency: 1 },
       { character: 'Rui', text: 'Busco adaptar os processos atuais de forma gradual, mostrando que a mudança pode ser feita sem perder a estrutura.', competency: 2 },
 	  
-      { character: 'Ana', text: 'Procuro envolver todos, ouvindo opiniões para construir uma visão compartilhada da mudança.', competency: 2 },
-      { character: 'Cris', text: 'Apresento ideias inovadoras com confiança, defendendo o valor da mudança de forma clara e objetiva.', competency: 1 }
+	//respostas 4  
+      { character: 'Rui', text: 'Procuro envolver todos, ouvindo opiniões para construir uma visão compartilhada da mudança.', competency: 2 },
+      { character: 'Ana', text: 'Apresento ideias inovadoras com confiança, defendendo o valor da mudança de forma clara e objetiva.', competency: 1 }
     ];
 
     function ResultExplanation({ competencyScore }) {
-      const CharacterAvatar = ({ character }) => ( /* Update 5 */
+      const CharacterAvatar = ({ character }) => (
         <div className={`character-avatar ${CHARACTERS[character].color}`}>
           {CHARACTERS[character].emoji}
         </div>
@@ -94,7 +98,7 @@
           const score2 = competencyScore[2];
           let newExplanation = '';
 
-          if (score1 > score2) {
+           if (score1 > score2) {
             newExplanation = "A dominância Adaptabilidade Estratégica pode melhorar com as seguintes ações: buscar se adapatar a novas realidades tendo flexibilidade cognnitiva, buscando a realidade e adaptação da estratégia a ela, valorizar os processos, para que sejam bem executados e por fim, buscar sempre o consenso.";
           } else if (score2 > score1) {
             newExplanation = "A dominância Produtividade Criativa pode melhorar com as seguintes ações: user obstinado e não desistir nunca, buscar sempre enxergar além da visão, estar orientado a ação e sempre buscar inovar fazendo um passo de cada vez, para ter mais assertividade.";
@@ -129,11 +133,11 @@
       return (
         <div className="mt-4">
           {!showExplanation && !isLoading && (
-            <div className="flex justify-start"> {/* Update 2 */}
-              <div className="flex items-start space-x-2 bg-gray-200 rounded-lg p-2"> {/* Update 2 */}
-                <CharacterAvatar character="Risk" /> {/* Update 2 */}
-                <div className="flex flex-col"> {/* Update 2 */}
-                  <p className="font-semibold">Risk</p> {/* Update 2 */}
+            <div className="flex justify-start">
+              <div className="flex items-start space-x-2 bg-gray-200 rounded-lg p-2">
+                <CharacterAvatar character="Risk" />
+                <div className="flex flex-col">
+                  <p className="font-semibold">Risk</p>
                   <button
                     onClick={handleExplanationRequest}
                     className="bg-blue-500 text-white rounded-lg p-2 flex items-center space-x-2 hover:bg-blue-600 transition-colors"
@@ -141,30 +145,30 @@
                     <span>Quer que eu explique o resultado?</span>
                     <PaperPlaneIcon />
                   </button>
-                </div> {/* Update 2 */}
-              </div> {/* Update 2 */}
+                </div>
+              </div>
             </div>
           )}
           {isLoading && <TypingIndicator />}
           {showExplanation && (
-            <div className="space-y-4"> {/* Update 3 */}
-              <div className="flex justify-start"> {/* Update 3 */}
-                <div className="flex items-start space-x-2 bg-gray-200 rounded-lg p-2"> {/* Update 3 */}
-                  <CharacterAvatar character="Risk" /> {/* Update 3 */}
-                  <div className="flex flex-col"> {/* Update 3 */}
-                    <p className="font-semibold">Risk</p> {/* Update 3 */}
-                    <p>{explanation}</p> {/* Update 3 */}
-                  </div> {/* Update 3 */}
-                </div> {/* Update 3 */}
-              </div> {/* Update 3 */}
-              <div className="flex justify-start"> {/* Update 3 */}
-                <div className="flex items-start space-x-2 bg-gray-200 rounded-lg p-2"> {/* Update 3 */}
-                  <CharacterAvatar character="Risk" /> {/* Update 3 */}
-                  <div className="flex flex-col"> {/* Update 3 */}
-                    <p className="font-semibold">Risk</p> {/* Update 3 */}
+            <div className="space-y-4">
+              <div className="flex justify-start">
+                <div className="flex items-start space-x-2 bg-gray-200 rounded-lg p-2">
+                  <CharacterAvatar character="Risk" />
+                  <div className="flex flex-col">
+                    <p className="font-semibold">Risk</p>
+                    <p>{explanation}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-start">
+                <div className="flex items-start space-x-2 bg-gray-200 rounded-lg p-2">
+                  <CharacterAvatar character="Risk" />
+                  <div className="flex flex-col">
+                    <p className="font-semibold">Risk</p>
                     <p>
-						Os comportamentos e competências testadas foram: 
-						<p><b>Competência Produtividade Criativa(Criatividade):</b></p>
+                      Os comportamentos e competências testadas foram: 
+						<p><b>Competência Produtividade Criativa (Criatividade):</b></p>
 						<p>1. Obstinado</p>
 						<p>2. Visão Expansiva</p>
 						<p>3. Orientação para a Ação</p>
@@ -174,20 +178,19 @@
 						<p>2. Realismo Estratégico</p>
 						<p>3. Valorização dos Processos</p>
 						<p>4. Construção do Consenso</p>
-						
-                    </p> {/* Update 3 */}
-                  </div> {/* Update 3 */}
-                </div> {/* Update 3 */}
-              </div> {/* Update 3 */}
-              <div className="flex justify-start mt-4"> {/* Update 4 */}
-                <div className="flex items-start space-x-2 bg-gray-200 rounded-lg p-2"> {/* Update 4 */}
-                  <CharacterAvatar character="Risk" /> {/* Update 4 */}
-                  <div className="flex flex-col"> {/* Update 4 */}
-                    <p className="font-semibold">Risk</p> {/* Update 4 */}
-                    <p>Obrigado por participar! Espero que essas informações tenham sido úteis para você.</p> {/* Update 4 */}
-                  </div> {/* Update 4 */}
-                </div> {/* Update 4 */}
-              </div> {/* Update 4 */}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-start mt-4">
+                <div className="flex items-start space-x-2 bg-gray-200 rounded-lg p-2">
+                  <CharacterAvatar character="Risk" />
+                  <div className="flex flex-col">
+                    <p className="font-semibold">Risk</p>
+                    <p>Obrigado por participar! Espero que essas informações tenham sido úteis para você.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>
@@ -196,7 +199,9 @@
 
     function ChatInterface() {
       const [messages, setMessages] = React.useState([
-        { character: 'Risk', text: 'Olá! Bem-vindos ao bate-papo entre Rui, Ana e Cris.' },
+        { character: 'Risk', text: 
+			'Olá! Bem-vindos ao bate-papo entre Rui, Ana e Cris. Iremos testar as suas habilidade em **Criativa e Adaptabilidade Estratégica**' 
+		},
         { character: 'Risk', text: 'Vamos iniciar o bate-papo?', isButton: true }
       ]);
       const [currentQuestion, setCurrentQuestion] = React.useState(0);
@@ -217,40 +222,44 @@
           [answer.competency]: Math.min(prev[answer.competency] + 1, 4)
         }));
         setShowAnswers(false);
-		
-		//Avança para a próxima pergunta
+        //Avança para a próxima pergunta 
         
-        if (currentQuestion < QUESTIONS.length - 1) {
-          	setCurrentQuestion(prev => prev + 1);
-			simulateTyping();
-        } else {
-          setShowResult(true);
-        }
+        setCurrentQuestion(prev => {
+          const next = prev + 1;
+          if (next < QUESTIONS.length) {
+            setTimeout(() => simulateTyping(next), 1000);
+          } else {
+            setShowResult(true);
+          }
+          return next;
+        });
       };
 
-      const simulateTyping = () => {
+      const simulateTyping = (questionIndex) => {
         setIsTyping(true);
         setTimeout(() => {
           setIsTyping(false);
-          addMessage(QUESTIONS[currentQuestion].character, QUESTIONS[currentQuestion].text);
-          setIsTyping(true);
-          setTimeout(() => {
-            setIsTyping(false);
-            addMessage('Risk', 'Qual das respostas você escolheria?');
+          if (questionIndex < QUESTIONS.length) {
+            addMessage(QUESTIONS[questionIndex].character, QUESTIONS[questionIndex].text);
             setIsTyping(true);
             setTimeout(() => {
               setIsTyping(false);
-              setShowAnswers(true);
+              addMessage('Risk', 'Qual das respostas você escolheria?');
+              setIsTyping(true);
+              setTimeout(() => {
+                setIsTyping(false);
+                setShowAnswers(true);
+              }, 1000);
             }, 1000);
-          }, 1000);
+          } else {
+            setShowResult(true);
+          }
         }, 2000);
       };
-	  
-	  
 
       const startConversation = () => {
         setConversationStarted(true);
-        simulateTyping();
+        simulateTyping(0);
       };
 
       const TypingIndicator = () => (
@@ -328,9 +337,8 @@
                 <div key={competency} className="mb-8">
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-bold text-xl">
-					          {competency === 1 ? 'Produtividade Criativa' : 'Adaptabilidade Estratégica'}
-							  
-					</span>
+							 {competency === 1 ? 'Produtividade Criativa' : 'Adaptabilidade Estratégica'}
+					</span>		 
                     <span className="font-bold text-lg">Score: {competencyScore[competency] * 25}%</span>
                   </div>
                   <div className="relative">
